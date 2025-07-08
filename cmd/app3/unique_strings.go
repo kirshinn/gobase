@@ -9,31 +9,31 @@ import (
 
 func unique(input io.Reader, output io.Writer) error {
 	in := bufio.NewScanner(input)
-	var prev string
+	//var prev string
 
-	//alreadySeen := make(map[string]bool)
+	alreadySeen := make(map[string]bool)
 
 	for in.Scan() {
 		// преобразуем считанную строку в текст
 		txt := in.Text()
 
 		// проверка имеется ли в карте значение
-		//if _, found := alreadySeen[txt]; found {
-		//	continue
-		//}
-
-		if txt == prev {
+		if _, found := alreadySeen[txt]; found {
 			continue
 		}
 
-		if txt < prev {
-			//panic("file not sorted")
-			return fmt.Errorf("file not sorted")
-		}
+		//if txt == prev {
+		//	continue
+		//}
 
-		prev = txt
+		//if txt < prev {
+		//panic("file not sorted")
+		//	return fmt.Errorf("file not sorted")
+		//}
 
-		//alreadySeen[txt] = true
+		//prev = txt
+
+		alreadySeen[txt] = true
 
 		_, err := fmt.Fprintln(output, txt)
 		if err != nil {

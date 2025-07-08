@@ -1,5 +1,6 @@
 # folders
-.idea
+.idea/
+bin/
 
 # files
 .DS_Store
